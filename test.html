@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  <script>
+    // Set the date we're counting down to
+    var d = new Date();
+    var month = new Array();
+    month[0] = "Jan";
+    month[1] = "Feb";
+    month[2] = "Mar";
+    month[3] = "Apr";
+    month[4] = "May";
+    month[5] = "Jun";
+    month[6] = "Jul";
+    month[7] = "Aug";
+    month[8] = "Sep";
+    month[9] = "Oct";
+    month[10] = "Nov";
+    month[11] = "Dec";
+    var countDownDate = new Date(month[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear() + " 18:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="demo"
+      document.getElementById("hours").innerHTML = hours + "h";
+      document.getElementById("minutes").innerHTML = minutes + "m";
+      document.getElementById("seconds").innerHTML = seconds + "s";
+
+      // If the count down is finished, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("expired").innerHTML = "******* EXPIRED *******";
+        document.getElementById("hours").innerHTML = 0;
+        document.getElementById("minutes").innerHTML = 0;
+        document.getElementById("seconds").innerHTML = 0;
+      }
+    }, 1000);
+  </script>
+  <title>Test App</title>
+</head>
+
+<body>
+  <div>
+    <!-- Display the countdown timer in an element -->
+    <h3>Countdown Timer:</h3>
+    <div style="border-radius: 35px; float:center; width:220px; height:70px; background-color:black;">
+      <table cellspacing=10 cellpadding="10" style="font-weight:bold;">
+        <tr>
+          <td id="hours" valign="center" style="border-radius: 25px; text-align:center; width:50px; height:50px; background-color:white;"></td>
+          <td id="minutes" style="border-radius: 25px; text-align:center; padding:5px; width:50px; height:50px; background-color:white;"></td>
+          <td id="seconds" style="border-radius: 25px; text-align:center; padding:5px; width:50px; height:50px; background-color:white;"></td>
+        </tr>
+      </table>
+    </div>
+    <h3 id="expired"></h3>
+  </div>
+</body>
+
+</html>
